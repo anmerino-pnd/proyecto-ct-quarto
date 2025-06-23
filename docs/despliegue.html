@@ -115,6 +115,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./despliegue.html" aria-current="page"> 
 <span class="menu-text">Despliegue</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./documentacion.html"> 
+<span class="menu-text">Documentación</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -140,11 +144,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#plan-de-implementación" id="toc-plan-de-implementación" class="nav-link" data-scroll-target="#plan-de-implementación">2 Plan de implementación</a>
   <ul class="collapse">
   <li><a href="#arquitectura-de-despliegue-y-conexión" id="toc-arquitectura-de-despliegue-y-conexión" class="nav-link" data-scroll-target="#arquitectura-de-despliegue-y-conexión">2.1. Arquitectura de Despliegue y Conexión</a></li>
-  <li><a href="#desarrollo-del-widget-frontend" id="toc-desarrollo-del-widget-frontend" class="nav-link" data-scroll-target="#desarrollo-del-widget-frontend">2.2 Desarrollo del widget frontend</a></li>
-  <li><a href="#plan-de-monitoreo" id="toc-plan-de-monitoreo" class="nav-link" data-scroll-target="#plan-de-monitoreo">2.3 Plan de monitoreo</a></li>
-  <li><a href="#plan-de-mantenimiento" id="toc-plan-de-mantenimiento" class="nav-link" data-scroll-target="#plan-de-mantenimiento">2.4 Plan de mantenimiento</a></li>
-  <li><a href="#experiencia-de-desarrollo" id="toc-experiencia-de-desarrollo" class="nav-link" data-scroll-target="#experiencia-de-desarrollo">2.5 Experiencia de desarrollo</a></li>
-  <li><a href="#despliegue-del-chatbot-en-el-sistema-de-desarrollo" id="toc-despliegue-del-chatbot-en-el-sistema-de-desarrollo" class="nav-link" data-scroll-target="#despliegue-del-chatbot-en-el-sistema-de-desarrollo">2.6 Despliegue del chatbot en el sistema de desarrollo</a></li>
+  <li><a href="#gestión-de-persistencia-de-datos-con-mongodb" id="toc-gestión-de-persistencia-de-datos-con-mongodb" class="nav-link" data-scroll-target="#gestión-de-persistencia-de-datos-con-mongodb">2.2 Gestión de Persistencia de Datos con MongoDB</a></li>
+  <li><a href="#desarrollo-del-widget-frontend" id="toc-desarrollo-del-widget-frontend" class="nav-link" data-scroll-target="#desarrollo-del-widget-frontend">2.3 Desarrollo del widget frontend</a></li>
+  <li><a href="#plan-de-monitoreo" id="toc-plan-de-monitoreo" class="nav-link" data-scroll-target="#plan-de-monitoreo">2.4 Plan de monitoreo</a></li>
+  <li><a href="#plan-de-mantenimiento" id="toc-plan-de-mantenimiento" class="nav-link" data-scroll-target="#plan-de-mantenimiento">2.5 Plan de mantenimiento</a></li>
+  <li><a href="#experiencia-de-desarrollo" id="toc-experiencia-de-desarrollo" class="nav-link" data-scroll-target="#experiencia-de-desarrollo">2.6 Experiencia de desarrollo</a></li>
+  <li><a href="#despliegue-del-chatbot-en-el-sistema-de-desarrollo" id="toc-despliegue-del-chatbot-en-el-sistema-de-desarrollo" class="nav-link" data-scroll-target="#despliegue-del-chatbot-en-el-sistema-de-desarrollo">2.7 Despliegue del chatbot en el sistema de desarrollo</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -207,12 +212,28 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Este enfoque de proxy en el backend PHP resuelve el problema del contenido mixto al asegurar que la comunicación entre el navegador (frontend) y la infraestructura del backend de la empresa siempre se realice a través de HTTPS. El desafío de integrar una fuente HTTP en un entorno HTTPS queda encapsulado en la comunicación de servidor a servidor.</p>
 </section>
+<section id="gestión-de-persistencia-de-datos-con-mongodb" class="level3">
+<h3 class="anchored" data-anchor-id="gestión-de-persistencia-de-datos-con-mongodb">2.2 Gestión de Persistencia de Datos con MongoDB</h3>
+<p>Una mejora significativa en la arquitectura del chatbot ha sido la migración de la gestión del historial de conversaciones desde archivos JSON locales a una base de datos NoSQL, específicamente MongoDB. Esta decisión se tomó para optimizar el almacenamiento, mejorar el rendimiento y facilitar el análisis de datos, especialmente considerando el volumen y la frecuencia de las interacciones de los usuarios.</p>
+<p>La implementación en MongoDB se estructura en dos colecciones principales:</p>
+<ul>
+<li><p><strong><code>sessions</code>:</strong> Esta colección está diseñada para mantener los últimos <code>n</code> mensajes de cada sesión de usuario. Su objetivo es asegurar una recuperación de mensajes mínima y rápida, optimizando la experiencia del usuario final al evitar la carga de historiales extensos en cada interacción. Cada vez que se añade un nuevo mensaje, el más antiguo se desplaza si se supera el límite de mensajes configurado, manteniendo la colección ligera y eficiente para las operaciones del chatbot.</p></li>
+<li><p><strong><code>message_backup</code>:</strong> A diferencia de <code>sessions</code>, esta colección actúa como un histórico completo de todos los mensajes generados. Su propósito principal es el análisis de datos y la alimentación de sistemas de reportes automatizados. El esquema de esta colección está pensado para simular una tabla SQL, lo que facilita la búsqueda y recuperación de información para análisis posteriores. Cada documento en esta colección incluye tanto la consulta del usuario como la respuesta del chatbot, junto con metadatos relevantes como <em>timestamps</em> y detalles de tokens utilizados.</p></li>
+</ul>
+<p>Esta estrategia de persistencia de datos en MongoDB ha permitido superar las limitaciones de los archivos JSON, que no eran escalables para una gran cantidad de usuarios, ofreciendo un camino más robusto y óptimo para almacenar la información de las conversaciones.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./mongodb.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Schema MongoDB</figcaption>
+</figure>
+</div>
+</section>
 <section id="desarrollo-del-widget-frontend" class="level3">
-<h3 class="anchored" data-anchor-id="desarrollo-del-widget-frontend">2.2 Desarrollo del widget frontend</h3>
+<h3 class="anchored" data-anchor-id="desarrollo-del-widget-frontend">2.3 Desarrollo del widget frontend</h3>
 <p>Se desarrolló un widget de chat personalizado e integrable mediante un simple script (<code>sdk.js</code>). Este widget se encarga de inyectar la interfaz de usuario (<code>html</code>) y cargar la lógica de la aplicación (<code>app.js</code>) y los estilos (<code>styles.css</code>) de forma dinámica en cualquier página web.</p>
 </section>
 <section id="plan-de-monitoreo" class="level3">
-<h3 class="anchored" data-anchor-id="plan-de-monitoreo">2.3 Plan de monitoreo</h3>
+<h3 class="anchored" data-anchor-id="plan-de-monitoreo">2.4 Plan de monitoreo</h3>
 <p>Durante la fase de pruebas, se implementará un plan de monitoreo para evaluar el rendimiento y comportamiento del sistema. Las métricas clave a seguir incluirán:</p>
 <ul>
 <li><strong>Tiempo de respuesta de la API:</strong> Latencia entre el envío de una consulta y la recepción de la primera parte o la respuesta completa.</li>
@@ -223,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 <section id="plan-de-mantenimiento" class="level3">
-<h3 class="anchored" data-anchor-id="plan-de-mantenimiento">2.4 Plan de mantenimiento</h3>
+<h3 class="anchored" data-anchor-id="plan-de-mantenimiento">2.5 Plan de mantenimiento</h3>
 <p>Se establecerá un plan de mantenimiento periódico para asegurar la estabilidad y el buen funcionamiento del sistema desplegado:</p>
 <ul>
 <li><strong>Actualización de dependencias:</strong> Programar revisiones y actualizaciones de las librerías y paquetes utilizados en la API (Python, Langchain, FastAPI, etc.) y potencialmente en el frontend si se usan librerías externas.</li>
@@ -233,11 +254,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 <section id="experiencia-de-desarrollo" class="level3">
-<h3 class="anchored" data-anchor-id="experiencia-de-desarrollo">2.5 Experiencia de desarrollo</h3>
+<h3 class="anchored" data-anchor-id="experiencia-de-desarrollo">2.6 Experiencia de desarrollo</h3>
 <p>El proyecto ha permitido consolidar la experiencia en el ciclo completo de desarrollo de una aplicación basada en modelos de lenguaje, desde la comprensión y preparación de datos complejos, pasando por el prototipado con herramientas como Langchain, hasta el desarrollo de una API robusta con FastAPI y la implementación de una interfaz de usuario dinámica y reusable (widget frontend desarrollado en <code>JS</code>, <code>HTML</code> y <code>CSS</code>). La resolución de desafíos específicos como el manejo de diferentes estructuras de datos para las vector stores y la integración segura de una API a un entorno web real (HTTPS/contenido mixto, CORS, permisos de red) han sido aprendizajes clave con complicaciones y problemas que se pudieron corregir y solucionar. Se han seguido buenas prácticas de desarrollo, enfocándose en la modularidad para facilitar futuras expansiones (ej: integración de LangGraph) y el mantenimiento del código.</p>
 </section>
 <section id="despliegue-del-chatbot-en-el-sistema-de-desarrollo" class="level3">
-<h3 class="anchored" data-anchor-id="despliegue-del-chatbot-en-el-sistema-de-desarrollo">2.6 Despliegue del chatbot en el sistema de desarrollo</h3>
+<h3 class="anchored" data-anchor-id="despliegue-del-chatbot-en-el-sistema-de-desarrollo">2.7 Despliegue del chatbot en el sistema de desarrollo</h3>
 <p>El chatbot fue desplegado exitosamente en el entorno de pruebas de CT Online, habilitado específicamente para fines de desarrollo e integración continua. Este entorno permite validar en condiciones casi reales el comportamiento tanto del frontend (widget) como de la API conversacional.</p>
 <p>El proceso de despliegue consistió en los siguientes pasos:</p>
 <ul>

@@ -264,20 +264,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/anmerino-pnd/proyectoCT</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> proyectoCT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
-<li>Crear un entorno virtual e instalar dependencias: Se recomienda usar <code>uv</code> por su eficiencia.</li>
-</ol>
+<li><p>Crear un entorno virtual e instalar dependencias:</p>
+<p>Se recomienda usar <code>uv</code> por su eficiencia.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate  <span class="co"># Para Linux/macOS</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o `.venv\Scripts\activate` para Windows</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-e</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>Asegurarse de estar corriendo Ollama en el ambiente: Verifica que el servicio de Ollama esté activo y que el modelo <code>gemma3:12b</code> esté disponible.</li>
-</ol>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-e</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Asegurarse de estar corriendo Ollama en el ambiente:</p>
+<p>Verifica que el servicio de Ollama esté activo y que el modelo <code>gemma3:12b</code> esté disponible.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> serve</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> list <span class="co"># Para verificar que el modelo gemma3:12b esté descargado y listo</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull gemma3:12b <span class="co"># Correr esta línea en caso que el modelo no aparezca</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
-<li>Configurar variables de entorno: Antes de levantar el <em>backend</em>, asegurarse de que el archivo <code>.env</code> en la raíz del proyecto contenga las siguientes variables con sus valores correctos. <strong>Es fundamental no exponera esta información directamente en el código fuente</strong></li>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull gemma3:12b <span class="co"># Correr esta línea en caso que el modelo no aparezca</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Configurar variables de entorno:</p>
+<p>Antes de levantar el <em>backend</em>, asegurarse de que el archivo <code>.env</code> en la raíz del proyecto contenga las siguientes variables con sus valores correctos.</p></li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conexión a la base de datos SQL</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ip<span class="op">=</span></span>
@@ -307,13 +306,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>MONGO_COLLECTION_SALES <span class="op">=</span> <span class="st">""</span>         </span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>MONGO_COLLECTION_SPECIFICATIONS <span class="op">=</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
-<li>Levantar el backend con Gunicorn: Este comando inicia la API, especificando el número de <em>workers</em>, el <em>binding</em> de IP y puerto, y la configuración de SSL/TLS para HTTPS.</li>
+<li>Levantar el backend con Gunicorn:</li>
 </ol>
+<p>Este comando inicia la API, especificando el número de <em>workers</em>, el <em>binding</em> de IP y puerto, y la configuración de SSL/TLS para HTTPS.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> gunicorn ct.main:app   <span class="at">--workers</span> 4   <span class="at">--bind</span> 0.0.0.0:8000   <span class="at">--certfile</span><span class="op">=</span>static/ssl/cert.pem   <span class="at">--keyfile</span><span class="op">=</span>static/ssl/key.pem   <span class="at">-k</span> uvicorn.workers.UvicornWorker   <span class="at">--access-logfile</span> <span class="at">-</span>   <span class="at">--error-logfile</span> <span class="at">-</span> <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El uso de <code>nogup</code> y <code>&amp;</code> asegura que el proceso continúe ejecutándose en segundo plano incluso si la sesión SSH se cierra.</p>
 <ol start="6" type="1">
-<li>Regenerar el certificado SSL (si expira o es necesario): Si el certificado SSL autofirmado ha expirado o necesitas uno nuevo:</li>
+<li>Regenerar el certificado SSL (si expira o es necesario):</li>
 </ol>
+<p>Si el certificado SSL autofirmado ha expirado o necesitas uno nuevo:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> req <span class="at">-x509</span> <span class="at">-newkey</span> rsa:2048 <span class="at">-nodes</span> <span class="at">-keyout</span> ssl/key.pem <span class="at">-out</span> ssl/cert.pem&nbsp;-days&nbsp;365</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Asegurarse de que los archivos <code>cert.pem</code> y <code>key.pem</code> estén en la ruta <code>ssl</code> dentro de tu proyecto.</p>
 </section>
@@ -384,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>Función</strong>: Este modelo avanzado de OpenAI es el encargado de generar las respuestas detalladas y contextualizadas para las consultas clasificadas como <em>relevantes</em>. Trabaja en conjunto con la cadena RAG para integrar la información recuperada de la base de datos vectorial.</li>
 <li><strong>Ventaja</strong>: Ofrece alta calidad y precisión en las respuestas, especialmente en el manejo de precios, promociones complejas y detalles de productos, lo que fue validad en pruebas comparativas.</li>
-<li><strong>Nota</strong>:Se ha estado testeado el nuevo modelo <code>gpt-4.1</code> y ha dado buenos resultados. Posiblemente haya una actualización del modelo utilizado por OpenAI.</li>
+<li><strong>Nota</strong>: Se ha estado testeado el nuevo modelo <code>gpt-4.1</code> y ha dado buenos resultados. Posiblemente haya una actualización del modelo utilizado por OpenAI.</li>
 </ul></li>
 </ul>
 </section>
@@ -408,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Extracción:
 <ul>
 <li>Los datos de productos base (ID, nombre, categoría, marca, tipo, modelo, descripciones, palabras clave, precios por lista de precio) se obtienen directamente de una <strong>base de datos MySQL</strong>.</li>
-<li>La información detallada de las fichas técnicas se extrae de un <strong>servicio externo</strong> a través de solicitudes HTTP/HTTPS, que devuelve los datos en formato XML. Se ha implementado un mecanismo de reintentos y manejo de errores (ej. 403 Forbidden por cambio de IP) para extracción.</li>
+<li>La información detallada de las fichas técnicas se extrae de un <strong>servicio externo</strong> a través de solicitudes HTTP/HTTPS, que devuelven los datos en formato XML. Se ha implementado un mecanismo de reintentos y manejo de errores (ej. 403 Forbidden por cambio de IP) para extracción.</li>
 </ul></li>
 <li>Transformación:
 <ul>
@@ -451,12 +452,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="recomendaciones-para-futura-mejora" class="level3">
 <h3 class="anchored" data-anchor-id="recomendaciones-para-futura-mejora">Recomendaciones para futura mejora</h3>
 <ol type="1">
-<li>Embeddings locales (Ollama): Para reducir los costos asociados con los <em>embeddings</em> de OpenAI y disminuir la dependencia de servicios externos, se recomienda realizar pruebas con los modelos de <em>embeddings</em> disponibles a través de Ollama (u otras librerías de <em>embeddings</em> locales).</li>
-<li>Indexado incremental: Actualmente, la actualización de la base vectorial puede implicar procesar grandes lotes. Para un mantenimiento más eficiente, especialmente si solo cambian algunos productos o sus precios/promociones, se podría implementar una función de actualización a nivel de producto.</li>
-<li>Monitoreo avanzado de rendimiento: Aunque ya se registran métricas de costo y duración, se puede profundizar en el monitoreo.</li>
-<li>Optimización del manejo de promociones complejas: Las promociones tipo “en compra X lleva Y” aún presenta desafíos. Podría ser necesario enriquecer el contexto del <em>embedding</em> para estos productos específicos, reglas más explícitas dentro del LLM o creación de plantillas de <em>prompts</em> más específicos para estas promociones.</li>
-<li>Actualmente se registra el error de IP bloqueada. Sería útil automatizar una notificación.</li>
+<li><strong>Embeddings locales (Ollama)</strong>:</li>
 </ol>
+<p>Para reducir los costos asociados con los <em>embeddings</em> de OpenAI y disminuir la dependencia de servicios externos, se recomienda realizar pruebas con los modelos de <em>embeddings</em> disponibles a través de Ollama (u otras librerías de <em>embeddings</em> locales).</p>
+<ol start="2" type="1">
+<li><strong>Indexado incremental</strong>:</li>
+</ol>
+<p>Actualmente, la actualización de la base vectorial puede implicar procesar grandes lotes. Para un mantenimiento más eficiente, especialmente si solo cambian algunos productos o sus precios/promociones, se podría implementar una función de actualización a nivel de producto.</p>
+<ol start="3" type="1">
+<li><strong>Monitoreo avanzado de rendimiento</strong>:</li>
+</ol>
+<p>Aunque ya se registran métricas de costo y duración, se puede profundizar en el monitoreo. ñ 4. <strong>Optimización del manejo de promociones complejas</strong>:</p>
+<p>Las promociones tipo “en compra X lleva Y” aún presenta desafíos. Podría ser necesario enriquecer el contexto del <em>embedding</em> para estos productos específicos, reglas más explícitas dentro del LLM o creación de plantillas de <em>prompts</em> más específicos para estas promociones.</p>
 </section>
 </section>
 <section id="diagrama-de-arquitectura" class="level2" style="text-align: justify">
@@ -502,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <ol start="5" type="1">
 <li>Si la consulta es <em>irrelevante</em> o <em>inapropiada</em>, el <strong>clasificador</strong> genera una respuesta adecuada (cortés o de advertencia) directamente al <strong>usuario</strong>.</li>
-<li>Todas las interacciones (consultas y respustas) se registran en las colecciones <code>sessions</code> y <code>message_backup</code> en <strong>MongoDB</strong>.</li>
+<li>Todas las interacciones (consultas y respuestas) se registran en las colecciones <code>sessions</code> y <code>message_backup</code> en <strong>MongoDB</strong>.</li>
 <li>El <strong>sistema de reportes automatizados</strong> accede a <code>message_backup</code> para generar análisis de datos.</li>
 </ol>
 </section>

@@ -6,13 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Angel Merino Cedeño">
-<meta name="author" content="Gerardo Leyva Conde">
-<meta name="author" content="Roberto Navarro Bartolini">
-<meta name="author" content="Abraham Rojo Salazar">
-<meta name="author" content="Oscar Esquer Vazquez">
 
-<title>Chatbot para sugerencias de productos: un enfoque personalizado</title>
+<title>Comprensión del negocio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -87,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./ctlogo.png" alt="" class="navbar-logo">
+    <img src="./cenace.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
@@ -97,31 +92,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./home.html" aria-current="page"> 
+    <a class="nav-link" href="./0_home.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./comprension.html"> 
+    <a class="nav-link active" href="./1_comprension.html" aria-current="page"> 
 <span class="menu-text">Comprensión del negocio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./comprension_datos.html"> 
+    <a class="nav-link" href="./2_comprension_datos.html"> 
 <span class="menu-text">Comprensión de los datos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./preparacion.html"> 
+    <a class="nav-link" href="./3_preparacion.html"> 
 <span class="menu-text">Preparación</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./modelado.html"> 
+    <a class="nav-link" href="./4_modelado.html"> 
 <span class="menu-text">Modelado y Evaluación</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./despliegue.html"> 
+    <a class="nav-link" href="./5_despliegue.html"> 
 <span class="menu-text">Despliegue</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./documentacion.html"> 
+    <a class="nav-link" href="./6_documentacion.html"> 
 <span class="menu-text">Documentación</span></a>
   </li>  
 </ul>
@@ -136,59 +131,32 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de Contenidos</h2>
+   
+  <ul>
+  <li><a href="#propuesta-de-solución" id="toc-propuesta-de-solución" class="nav-link active" data-scroll-target="#propuesta-de-solución">0.1. Propuesta de solución</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">0.2. Objetivos</a></li>
+  <li><a href="#terminología" id="toc-terminología" class="nav-link" data-scroll-target="#terminología">0.3. Terminología</a></li>
+  <li><a href="#beneficios" id="toc-beneficios" class="nav-link" data-scroll-target="#beneficios">0.4. Beneficios</a></li>
+  <li><a href="#costos" id="toc-costos" class="nav-link" data-scroll-target="#costos">0.5. Costos</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Chatbot para sugerencias de productos: un enfoque personalizado</h1>
+<h1 class="title">Comprensión del negocio</h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autores/as</div>
-  <div class="quarto-title-meta-heading">Afiliación</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://www.linkedin.com/in/anmerino-pnd">Angel Merino Cedeño</a> <a href="mailto:acedeno00@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            <a href="https://unisonmx-my.sharepoint.com/:w:/g/personal/a218204710_unison_mx/EYLVn5p-js9Hh7hr8HmUKOgBZq5L1wHwtZzyjEZG_SeUGA?e=Q7U9pP">📄 CV</a>
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Gerardo Leyva Conde </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Roberto Navarro Bartolini </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Abraham Rojo Salazar </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Oscar Esquer Vazquez </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
-    <div>
-    <div class="quarto-title-meta-heading">Fecha de publicación</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">18 de septiembre de 2025</p>
-    </div>
-  </div>
+    
   
     
   </div>
@@ -198,19 +166,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introducción" class="level2" style="text-align: justify">
-<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>Este proyecto se enfoca en el desarrollo de un chatbot para la recomendación de productos, basado en un sistema de recuperación de información desde una base de datos vectorial. A través de este chatbot, se busca optimizar la experiencia del cliente, sugiriendo productos relevantes según las especificaciones y presupuesto proporcionados.</p>
-<p>El proyecto se divide en seis fases:</p>
-<ol type="1">
-<li><p><strong>Comprensión del Negocio:</strong> Definición de los objetivos y el contexto del proyecto, enfocados en la mejora de la experiencia del cliente y la eficiencia del proceso de recomendación de productos.</p></li>
-<li><p><strong>Comprensión de los Datos:</strong> Recolección y análisis preliminar de los datos disponibles, tales como características de los productos y preferencias de los usuarios.</p></li>
-<li><p><strong>Preparación de los Datos:</strong> Limpieza, transformación y estructuración de los datos para que puedan ser utilizados en el sistema de recomendación y la base de datos vectorial.</p></li>
-<li><p><strong>Desarrollo del Sistema de Recomendación</strong>: Implementación del chatbot que utilizará un modelo de lenguaje grande (LLM) para interpretar las consultas y hacer recomendaciones basadas en la base de datos vectorial.</p></li>
-<li><p><strong>Evaluación:</strong> Validación de la precisión y relevancia de las recomendaciones ofrecidas por el chatbot, utilizando métricas de evaluación del sistema.</p></li>
-<li><p><strong>Implementación:</strong> Integración del chatbot en la plataforma de la empresa, presentación de los resultados y recomendaciones para mejorar el sistema de recomendación y la interacción con los clientes.</p></li>
-</ol>
-<p>A través de estas fases, se busca proporcionar una solución innovadora que mejore la interacción con los clientes, optimizando la selección de productos y mejorando la eficiencia del proceso de recomendación.</p>
+<div style="text-align: justify">
+<p>El <strong>Centro Nacional de Control de Energía</strong> (<strong>CENACE</strong>) es el organismo encargado de la planeación y el control operativo del <strong>Sistema Eléctrico Nacional</strong> (<strong>SEN</strong>). El CENACE cuenta con una mesa de ayuda (<strong>Help Desk</strong>), la cual provee soporte y le da seguimiento a incidentes reportados en todo el país. En este trabajo nos restringimos a los incidentes reportados para la zona noroeste, la cual se conforma de los estados de Sonora y Sinaloa. Los incidentes se reportan en formato de tickets y son gestionados por los ingenieros de la organización.</p>
+<p>Teniendo en cuenta la naturaleza <strong>crítica del sector energético</strong>, la <strong>constante evolución tecnológica</strong> y la <strong>gran cantidad de documentación técnica</strong> existente, surge la necesidad de optimizar el acceso a la información. La búsqueda manual de esta información para resolver incidentes puede ser un proceso lento, impactando la eficiencia operativa. Además de aprovechar la base de conocimientos que ya se tiene para proponer soluciones a problemas previamente vistos.</p>
+</div>
+<section id="propuesta-de-solución" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="propuesta-de-solución">0.1. Propuesta de solución</h2>
+<p>Proponemos desarrollar un sistema de Help Desk inteligente basado en Inteligencia Artificial Generativa que utilice la metodología de <strong>Recuperación Aumentada por Generación</strong> (<strong>RAG</strong>) y <strong>modelos de lenguaje grandes</strong> (<strong>LLM</strong>). Este sistema actuará como una herramienta de apoyo para los ingenieros, proporcionando respuestas inmediatas a sus consultas técnicas. El sistema permitirá una clasificación y recuperación de información más eficiente, y generará respuestas contextualizadas a partir de la base de conocimientos interna del CENACE.</p>
+</section>
+<section id="objetivos" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="objetivos">0.2. Objetivos</h2>
+<p>El objetivo principal es elaborar un sistema de <strong>Help Desk</strong> que utilice la base de conocimientos del <strong>CENACE</strong> y <strong>modelos de lenguaje grande</strong> para que los ingenieros tengan apoyo inmediato y puedan tomar decisiones rápidas al alcance de la mano. Con esto, se espera ahorrar tiempo en la <strong>clasificación, recuperación y generación</strong> de la información técnica, y a su vez, nutrir la base de conocimientos con las soluciones generadas.</p>
+</section>
+<section id="terminología" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="terminología">0.3. Terminología</h2>
+<ul>
+<li><p><strong>RAG (Retrieval-Augmented Generation)</strong>: Un enfoque de IA que combina la recuperación de información con la generación de lenguaje, para crear respuestas más precisas y contextualizadas.</p></li>
+<li><p><strong>LLM (Large Language Model)</strong>: Modelo de lenguaje grande capaz de comprender y generar texto similar al humano, como el modelo <code>gemma3:4b</code> que se utilizará en el proyecto.</p></li>
+<li><p><strong>Ollama</strong>: Un framework que permite ejecutar modelos de lenguaje grandes de código abierto de forma local.</p></li>
+<li><p><strong>Vector Embeddings</strong>: Representaciones numéricas de texto que capturan su significado semántico, facilitando la búsqueda de información similar.</p></li>
+<li><p><strong>Base de datos vectorial</strong>: Una base de datos optimizada para almacenar y buscar vector embeddings.</p></li>
+<li><p><strong>FastAPI</strong>: Un framework web de Python de alto rendimiento para construir APIs.</p></li>
+<li><p><strong>MongoDB</strong>: Una base de datos NoSQL que se utilizará para almacenar el historial de conversaciones, tickets y la documentación original.</p></li>
+</ul>
+</section>
+<section id="beneficios" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="beneficios">0.4. Beneficios</h2>
+<ul>
+<li><p><strong>Innovación en el soporte técnico</strong>: Introducir un nuevo enfoque para acceder a la información técnica, brindando una experiencia más personalizada y eficiente para los ingenieros.</p></li>
+<li><p><strong>Optimización del flujo de trabajo</strong>: El sistema permitirá a los ingenieros ahorrar tiempo en la búsqueda de información, lo que se traducirá en una mayor eficiencia operativa y una toma de decisiones más rápida.</p></li>
+<li><p><strong>Preservación del conocimiento</strong>: El sistema ayuda a estructurar y hacer accesible la vasta base de conocimientos del CENACE, garantizando que el conocimiento institucional no se pierda.</p></li>
+<li><p><strong>Clasificación y sugerencia automática</strong>: El sistema puede ayudar a clasificar los tickets de incidentes y sugerir soluciones, lo que agiliza el proceso de resolución.</p></li>
+</ul>
+</section>
+<section id="costos" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="costos">0.5. Costos</h2>
+<ul>
+<li><p><strong>Tiempo</strong>: El proyecto tiene un plazo estimado para desarrollar una versión funcional que pueda ser evaluada y mejorada.</p></li>
+<li><p><strong>Financieros</strong>: Aunque se utilizan modelos y herramientas de código abierto, se consideran costos asociados al hardware necesario para ejecutar los modelos de manera local (servidores, etc.).</p></li>
+</ul>
 </section>
 
 
